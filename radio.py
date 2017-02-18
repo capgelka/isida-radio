@@ -42,7 +42,7 @@ def radio(message_type, jid, nick, text):
     if not comm_args or len(comm_args) > 2:
         msg = '\n'.join('{name}: {track}'.format(name=s, 
                                                  track=current_track(root, s))
-                        for s in streams)
+                        for s in streams) or 'no streams up now'
 
     elif comm_args[0] == 'set':
         new_root = comm_args[1]
@@ -51,7 +51,7 @@ def radio(message_type, jid, nick, text):
     else:
         stream = comm_args[0]
         if stream not in streams:
-            msg = 'wrong stream name!'
+            msg = 'wrong stream name, or stream is down now'
         else:
             msg = current_track(root, stream)
     send_msg(message_type, jid, nick, msg)
