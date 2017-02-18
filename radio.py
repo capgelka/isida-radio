@@ -24,8 +24,8 @@ def current_track(root_url, stream_name):
 
 def get_streams(root_url):
     html = requests.get(root_url).text
-    pattern = re.compile('<h3 class="mount">Mount Point (.*?)</h3>')
-    return [s[1:] for s in pattern.findall(html)]
+    pattern = re.compile('<h3 class="mount">Mount Point /(.*?)</h3>')
+    return pattern.findall(html)
 
 
 def radio(message_type, jid, nick, text):
