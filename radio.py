@@ -38,10 +38,11 @@ def radio(message_type, jid, nick, text):
     except requests.RequestException:
         streams = []
     comm_args = text.split()
-    buff_answer = []
     if not comm_args or len(comm_args) > 2:
-        msg = '\n'.join('{name}: {track}'.format(name=s, 
-                                                 track=current_track(root, s))
+        msg = '\n'.join('{root}/{name}: '
+                        '{track}'.format(name=s, 
+                                         root=root,
+                                         track=current_track(root, s))
                         for s in streams) or 'no streams up now'
 
     elif comm_args[0] == 'set':
